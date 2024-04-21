@@ -42,13 +42,13 @@ class PostController extends Controller
     {
         //
         
-        //return redirect()->route('posts.index')->with('success','Category updated successfully');;
+        //return redirect()->route('posts.index')->with('success','Post updated successfully');;
        
         //Post::create($request -> all());
         //return back()->with('status', 'Publicación creada con exito');
 
-        Post::create($request -> all());
-        return redirect()->route('posts.index')->with('success', 'Publicación creada con exito');
+        Post::create($request->all());
+        return redirect()->route('posts.index')->with('success', 'Post created successfully');
     }
 
     /**
@@ -63,24 +63,30 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Post $post)
     {
         //
+        $categories = Category::all();
+        return view('posts.edit', compact('post', 'categories'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(CreatePostRequest $request, Post $post)
     {
         //
+        $post -> update($request->all());
+        return redirect()->route('posts.index')->with('success', 'Post updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Post $post)
     {
         //
+        $post->delete();
+        return redirect()->route('posts.index')->with('success', 'Post deleted successfully');
     }
 }

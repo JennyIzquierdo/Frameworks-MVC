@@ -11,17 +11,17 @@
                     <div class="card-body">
                         <form method="POST" action="{{ route('posts.store') }}" >
                             @csrf
-                            <div class="form-group row mb-3">
+                            <div class="form-group mb-3">
                                 <label for="title">Titulo</label>
                                 <input type="text" name="title" id="title" class="form-control">
                             </div>
-                            <div class="form-group row mb-3">
+                            <div class="form-group  mb-3">
                                 <label for="content">Contenido</label>
-                                <textarea type="text" name="content" id="content" rows="5" class="form-control"> </textarea>
+                                <textarea name="content" id="content" rows="5" class="form-control"> </textarea>
                             </div>
-                            <div class="form-group row mb-3">
+                            <div class="form-group  mb-3">
                                 <label for="category">Categoria</label>
-                                <select name="category" id="category" class="form-control">
+                                <select name="category_id" id="category" class="form-control">
                                     @foreach ($categories as $category)
                                         <option value="{{ $category->id }}">{{ $category->category_name }}</option>
                                     @endforeach
